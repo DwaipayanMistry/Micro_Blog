@@ -7,7 +7,6 @@ import { syncUser } from "../actions/User.action";
 import { SignOutButton } from "@clerk/nextjs";
 
 const DesktopComponent = async () => {
-  const signout = () => {};
 
   const user = await currentUser();
   if (user) await syncUser(); //POST request
