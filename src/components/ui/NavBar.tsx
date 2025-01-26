@@ -5,7 +5,8 @@ import MobileComponent from "./MobileComponent";
 import Link from "next/link";
 import DesktopComponent from "./DesktopComponent";
 
-export default function NavBar() {
+export default async function NavBar() {
+ 
   return (
     <nav className="flex justify-between items-center p-1">
       <Link href='/'>

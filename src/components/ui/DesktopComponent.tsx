@@ -3,12 +3,17 @@ import UserSignin from "./user";
 import Link from "next/link";
 import { BellIcon, House, LogOutIcon, User } from "lucide-react";
 import { Button } from "./button";
+import { syncUser } from "../actions/User.action";
+import { SignOutButton } from "@clerk/nextjs";
 
 const DesktopComponent = async () => {
+  const signout = () => {};
+
   const user = await currentUser();
+  if (user) await syncUser(); //POST request
   return (
-    <>
-      {!user ? (
+    <div className="hidden lg:block">
+      {user ? (
         <div className="hidden lg:flex gap-5">
           <div className="flex justify-center items-center">
             <Link href={"/"}>
@@ -39,12 +44,14 @@ const DesktopComponent = async () => {
             </Link>
           </div>
           <div className="flex justify-center items-center">
-          <div className=" flex justify-center">
-                    <Button className=" w-[95%] " variant={"default"}>
-                      <LogOutIcon></LogOutIcon>
-                      <p>Log Out</p>
-                    </Button>
-                  </div>
+            <SignOutButton>
+              <div className=" flex justify-center">
+                <Button className=" w-[95%] " variant={"default"}>
+                  <LogOutIcon></LogOutIcon>
+                  <p>Log Out</p>
+                </Button>
+              </div>
+            </SignOutButton>
           </div>
         </div>
       ) : (
@@ -52,7 +59,8 @@ const DesktopComponent = async () => {
           <UserSignin></UserSignin>
         </>
       )}
-    </>
+    </div>
   );
 };
+
 export default DesktopComponent;

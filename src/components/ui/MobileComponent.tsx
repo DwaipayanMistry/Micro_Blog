@@ -1,5 +1,3 @@
-"use client";
-
 import { SignOutButton, useAuth } from "@clerk/nextjs";
 import {
   Sheet,
@@ -14,9 +12,12 @@ import Link from "next/link";
 import { AlignJustify, BellIcon, House, LogOutIcon, User } from "lucide-react";
 import { Button } from "./button";
 import UserSignin from "./user";
+import { currentUser } from "@clerk/nextjs/server";
+import { syncUser } from "../actions/User.action";
 
-const MobileComponent = () => {
-  const { isSignedIn } = useAuth();
+const MobileComponent = async () => {
+  const user = await currentUser();
+  if (user) await syncUser(); //POST request
   return (
     <>
       <div className="flex lg:hidden ">
@@ -36,7 +37,7 @@ const MobileComponent = () => {
               </SheetTitle>
             </SheetHeader>
             {/* user and sign in, notification etc... */}
-            {isSignedIn ? (
+            {user ? (
               <>
                 {/* Notification */}
                 <Link
