@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/ui/ThemeToggle";
 import NavBar from "@/components/ui/NavBar";
+import SideBar from "@/components/SideBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -52,7 +53,8 @@ export default function RootLayout({
                 <div className="max-w-7xl mx-auto px-">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     <div className="hidden lg:block lg:col-span-3">
-                      Persons details
+                      {/* Persons details */}
+                      <SideBar></SideBar>
                     </div>
                     <div className="lg:col-span-9">{children}</div>
                     {/* <div className="lg:col-span-2">follow</div> */}

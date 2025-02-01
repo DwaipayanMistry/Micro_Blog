@@ -35,3 +35,18 @@ export async function syncUser() {
         console.error(`error in syncUser --> ${error}`)
     }
 }
+
+export async function getProfileData(clarkId: string) {
+    return prisma.user.findUnique({
+        where: { clarkId },
+        include: {
+            _count: {
+                select: {
+                    followers: true,
+                    following: true,
+                    posts: true,
+                }
+            }
+        }
+    })
+} 

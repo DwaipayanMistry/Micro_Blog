@@ -8,7 +8,7 @@ import DesktopComponent from "./DesktopComponent";
 export default async function NavBar() {
  
   return (
-    <nav className="flex justify-between items-center p-1">
+    <nav className="flex justify-between items-center p-1 border-b-2">
       <Link href='/'>
         <div className="pl-2 text-[24px]">Micro Blog</div>
       </Link>
