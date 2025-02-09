@@ -4,6 +4,8 @@
 
 import { prisma } from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { error } from "console";
+import exp from "constants";
 
 export async function syncUser() {
     try {
@@ -49,4 +51,20 @@ export async function getProfileData(clarkId: string) {
             }
         }
     })
-} 
+}
+
+export async function getUserId() {
+    const { userId: clarkId } = await auth()
+    if (!clarkId) return null;
+    const user = await getProfileData(clarkId)
+    if (!user) {
+        throw new Error("User Not Found");
+    }
+    return user.id;
+}
+export async function UserAvatarImj(clarkId: string) {
+    const image = await prisma.user.findUnique({
+        where: { clarkId }, select: { image: true }
+    });
+    return image;
+}

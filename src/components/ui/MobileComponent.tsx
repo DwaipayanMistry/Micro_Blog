@@ -11,7 +11,7 @@ import Link from "next/link";
 
 import { AlignJustify, BellIcon, House, LogOutIcon, User } from "lucide-react";
 import { Button } from "./button";
-import UserSignin from "./user";
+import UserSignin from "./UserSignin";
 import { currentUser } from "@clerk/nextjs/server";
 import { syncUser } from "../actions/User.action";
 

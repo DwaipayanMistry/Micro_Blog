@@ -1,12 +1,12 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./card";
 import Link from "next/link";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
-import { Button } from "./ui/button";
-import { getProfileData } from "./actions/User.action";
-import { Avatar, AvatarImage } from "./ui/avatar";
+import { Button } from "./button";
+import { getProfileData } from "../actions/User.action";
+import { Avatar, AvatarImage } from "./avatar";
 import { Prisma } from "@prisma/client";
-import { Separator } from "./ui/separator";
+import { Separator } from "./separator";
 import { use } from "react";
 import { LinkIcon, MapPinIcon } from "lucide-react";
 
@@ -27,19 +27,21 @@ interface User {
   location: string | null;
   website: string | null;
 }
+// ---------------------------
 
 const SideBar = async () => {
   const authUser = await currentUser();
   if (!authUser) {
     return <UnSignedInSideBar></UnSignedInSideBar>;
   }
-  const user = await getProfileData(authUser.id);
+//   console.log("Clerk id:  :"+authUser.id);
+    const user = await getProfileData(authUser.id);
 
-  if (!user) {
-    return null;
-  }
+    if (!user) {
+      return null;
+    }
 
-  return <SignedIn user={user}></SignedIn>;
+    return <SignedIn user={user}></SignedIn>;
 };
 
 const SignedIn = ({ user }: { user: User }) => {
@@ -59,7 +61,9 @@ const SignedIn = ({ user }: { user: User }) => {
 
               <div className="mt-4 space-y-1">
                 <h3 className="font-semibold hover:underline">{user.name}</h3>
-                <p className="text-sm text-muted-foreground hover:underline">{user.userName}</p>
+                <p className="text-sm text-muted-foreground hover:underline">
+                  {user.userName}
+                </p>
               </div>
             </Link>
 

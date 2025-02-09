@@ -1,5 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
-import UserSignin from "./user";
+import UserSignin from "./UserSignin";
 import Link from "next/link";
 import { BellIcon, House, LogOutIcon, User } from "lucide-react";
 import { Button } from "./button";

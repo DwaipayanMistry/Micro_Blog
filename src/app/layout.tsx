@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { Button } from "@/components/ui/button";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/ui/ThemeToggle";
 import NavBar from "@/components/ui/NavBar";
-import SideBar from "@/components/SideBar";
+import SideBar from "@/components/ui/SideBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -47,7 +41,6 @@ export default function RootLayout({
           >
             <div className="min-h-screen">
               <NavBar></NavBar>
-
               <main className="py-8">
                 {/* content */}
                 <div className="max-w-7xl mx-auto px-">
