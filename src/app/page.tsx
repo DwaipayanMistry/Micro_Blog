@@ -1,3 +1,4 @@
+import FollowerSuggest from "@/components/FollowerSuggest";
 import CreatePost from "@/components/ui/CreatePost";
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
@@ -16,7 +17,7 @@ export default async function Home() {
         {/* Recommendation */}
 
         <div className="hidden lg:block lg:col-span-4 sticky top-20">
-          who to follow
+          <FollowerSuggest></FollowerSuggest>
         </div>
       </div>
     </>

@@ -68,3 +68,48 @@ export async function UserAvatarImj(clarkId: string) {
     });
     return image;
 }
+
+export async function getRandomUser() {
+    try {
+
+        const userId = await getUserId();
+        if (!userId) {
+            return [];
+        };
+        const randomUser = await prisma.user.findMany({
+            where: {
+                AND: [{
+                    NOT: {
+                        id: userId
+                    }
+                },
+                {
+                    NOT: {
+                        followers: {
+                            some: {
+                                followerId: userId,
+                            }
+                        }
+                    }
+                }],
+            },
+            select: {
+                id: true,
+                name: true,
+                userName: true,
+                image: true,
+                _count: {
+                    select: {
+                        followers: true,
+                    }
+                }
+            },
+            take: 3,
+        });
+        return randomUser;
+
+    } catch (error) {
+        console.log(`Error fetching random user: ${error}`);
+        return []
+    }
+}
