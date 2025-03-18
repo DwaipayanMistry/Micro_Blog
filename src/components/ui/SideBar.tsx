@@ -77,7 +77,7 @@ const SignedIn = ({ user }: { user: User }) => {
                 {/* follower and following */}
                 <div className="flex justify-between">
                   <div>
-                    <p className="font-medium">{user._count.followers}</p>
+                    <p className="font-medium">{user._count.following}</p>
                     <p className="text-xs text-muted-foreground">Following</p>
                   </div>
                   <Separator orientation="vertical"></Separator>
